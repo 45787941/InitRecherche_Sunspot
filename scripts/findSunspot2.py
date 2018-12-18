@@ -13,6 +13,8 @@ hv = HelioviewerClient()
 filepath = hv.download_jp2('2012/07/05 00:30:00', observatory='SDO', instrument='HMI', detector='HMI', measurement='continuum')
 hmi = Map(filepath)
 
+sc = SkyCoord(208.5*u.deg, -17.37*u.deg, frame="heliographic_carrington", obstime="2012/07/05 00:30:00")
+print(sc)
 hmi = hmi.submap([2400,1400]*u.pixel,[3000,1750]*u.pixel)
 
 fig = plt.figure()
