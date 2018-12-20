@@ -5,6 +5,7 @@ from sunpy.net.helioviewer import HelioviewerClient
 import matplotlib.pyplot as plt
 from astropy.units import Quantity
 from sunpy.map import Map
+from sunpy.coordinates import frames
 
 import sunpy.map
 import sunpy.data.sample
@@ -13,9 +14,13 @@ hv = HelioviewerClient()
 filepath = hv.download_jp2('2012/07/05 00:30:00', observatory='SDO', instrument='HMI', detector='HMI', measurement='continuum')
 hmi = Map(filepath)
 
-sc = SkyCoord(208.5*u.deg, -17.37*u.deg, frame="heliographic_carrington", obstime="2012/07/05 00:30:00")
+sc = SkyCoord(208.5*u.deg, -17.37*u.deg, (7.64/2)*u.km, frame="heliographic_carrington", obstime="2012/07/05 01:59:10")
 print(sc)
-hmi = hmi.submap([2400,1400]*u.pixel,[3000,1750]*u.pixel)
+
+sc = sc.transform_to(frames.Helioprojective)
+print(sc)
+
+#hmi = hmi.submap(sc)
 
 fig = plt.figure()
 # Provide the Map as a projection, which creates a WCSAxes object
