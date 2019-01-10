@@ -10,7 +10,7 @@ for image_name in os.listdir('.'):
                        size_for_calculations = 64,
                        sigma = 1,
                        gradient_threshold_as_fraction = 0.08,
-                       level_decimation_factor = 16,
+                       level_decimation_factor = 8,
                        padding = 0,
                )
         shed.extract_data_pixels()
@@ -24,7 +24,6 @@ for image_name in os.listdir('.'):
         shed.propagate_influence_zones_from_bottom_to_top_of_Z_levels()
         shed.display_watershed()
         shed.display_watershed_in_color()
-
         #   Extract up to 30 blob contours and, at the same time, only accept
         #   contours whose length is GREATER THAN 20 pixels:
         #contours = shed.extract_watershed_contours_with_random_sampling(50, 50)
