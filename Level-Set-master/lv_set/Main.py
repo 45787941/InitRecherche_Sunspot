@@ -8,13 +8,14 @@ import numpy as np
 import sys
 
 img = np.array(imread(sys.argv[1], True), dtype='float32')
+#img = np.array(imread('twocells.bmp', True), dtype='float32')
 # im_t = img[:, :, 1]
 
 # parameters
 timestep = 1        # time step
 mu = 0.2/timestep   # coefficient of the distance regularization term R(phi)
 iter_inner = 4
-iter_outer = 25
+iter_outer = 100
 lmda = 2            # coefficient of the weighted length term L(phi)
 alfa = -9           # coefficient of the weighted area term A(phi)
 epsilon = 2.0       # parameter that specifies the width of the DiracDelta function
@@ -31,7 +32,7 @@ initialLSF = c0 * np.ones(img.shape)
 # generate the initial region R0 as two rectangles
 # initialLSF[24:35, 19:25] = -c0
 print(initialLSF.shape)
-initialLSF[24:35, 20:26] = -c0
+initialLSF[40:50, 60:70] = -c0
 phi = initialLSF.copy()
 
 plt.ion()
@@ -78,7 +79,7 @@ for n in range(iter_outer):
         show_fig2()
         fig1.clf()
         show_fig1()
-        plt.pause(0.3)
+        plt.pause(0.1)
 
 # refine the zero level contour by further level set evolution with alfa=0
 alfa = 0
@@ -104,6 +105,5 @@ ax3.plot_surface(X, Y, -finalLSF, rstride=2, cstride=2, color='r', linewidth=0, 
 ax3.contour(X, Y, finalLSF, 0, colors='g', linewidths=2)
 '''
 
-plt.pause(10)
+plt.pause(15)
 plt.show()
-
