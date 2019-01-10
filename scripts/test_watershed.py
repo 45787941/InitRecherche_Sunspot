@@ -7,7 +7,7 @@ for image_name in os.listdir('.'):
         shed = Watershed(
                        data_image = str(image_name),
                        binary_or_gray_or_color = "color",
-                       size_for_calculations = 64,
+                       size_for_calculations = 128,
                        sigma = 1,
                        gradient_threshold_as_fraction = 0.08,
                        level_decimation_factor = 8,
