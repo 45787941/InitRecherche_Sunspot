@@ -14,7 +14,7 @@ img = np.array(imread(sys.argv[1], True), dtype='float32')
 # parameters
 timestep = 1        # time step
 mu = 0.2/timestep   # coefficient of the distance regularization term R(phi)
-iter_inner = 4
+iter_inner = 10
 iter_outer = 50
 lmda = 2            # coefficient of the weighted length term L(phi)
 alfa = -9           # coefficient of the weighted area term A(phi)
