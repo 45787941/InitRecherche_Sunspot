@@ -1,6 +1,6 @@
 import sys
 import numpy as np
-import jaccard
+import accuracy
 import segmentation
 import request
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         print(" -- " + segmentation.labels[i] + " -- ")
         sum = 0
         for j in range(len(contours[0])):
-            score = jaccard.jaccard_similarity_score(contours[i][j], contours[0][j])
+            score = accuracy.jaccard(contours[0][j], contours[i][j])
             sum += score
             print(score)
         mean = sum / len(contours[0])
