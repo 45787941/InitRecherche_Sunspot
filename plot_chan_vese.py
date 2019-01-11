@@ -48,9 +48,10 @@ import matplotlib.pyplot as plt
 from skimage import data, img_as_float
 from skimage.segmentation import chan_vese
 from scipy.misc import imread
-
+import sys
 #image = img_as_float(data.camera())
-image = np.array(imread("data/2test_taches.png", True), dtype='float32')
+image = np.array(imread("data/2012-07-05_00-30-00.png"
+, True), dtype='float32')
 # Feel free to play around with the parameters to see how they impact the result
 cv = chan_vese(image, mu=0.25, lambda1=1, lambda2=1, tol=1e-3, max_iter=200,
                dt=0.5, init_level_set="checkerboard", extended_output=True)
@@ -71,8 +72,16 @@ ax[2].imshow(cv[1], cmap="gray")
 ax[2].set_axis_off()
 ax[2].set_title("Final Level Set", fontsize=12)
 
+
 ax[3].plot(cv[2])
 ax[3].set_title("Evolution of energy over iterations", fontsize=12)
 
 fig.tight_layout()
 plt.show()
+
+for l in cv[1]:
+    for p in l:
+        if p > 0:
+            print(0)
+        else:
+            print(1)
