@@ -15,12 +15,12 @@ img = np.array(imread(sys.argv[1], True), dtype='float32')
 timestep = 1        # time step
 mu = 0.2/timestep   # coefficient of the distance regularization term R(phi)
 iter_inner = 4
-iter_outer = 100
+iter_outer = 50
 lmda = 2            # coefficient of the weighted length term L(phi)
 alfa = -9           # coefficient of the weighted area term A(phi)
 epsilon = 2.0       # parameter that specifies the width of the DiracDelta function
 
-sigma = 0.6  #0.8         # scale parameter in Gaussian kernel
+sigma = 0.8  #0.8         # scale parameter in Gaussian kernel
 img_smooth = filters.gaussian_filter(img, sigma)    # smooth image by Gaussian convolution
 [Iy, Ix] = np.gradient(img_smooth)
 f = np.square(Ix) + np.square(Iy)
@@ -32,7 +32,7 @@ initialLSF = c0 * np.ones(img.shape)
 # generate the initial region R0 as two rectangles
 # initialLSF[24:35, 19:25] = -c0
 print(initialLSF.shape)
-initialLSF[50:80, 50:70] = -c0
+initialLSF[75:85, 45:55] = -c0
 phi = initialLSF.copy()
 
 plt.ion()
